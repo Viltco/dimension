@@ -1,0 +1,70 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+
+    <record id="add_checkbox_in_vendor" model="ir.ui.view">
+          <field name="name">Is Approved Vendor</field>
+          <field name="model">res.partner</field>
+          <field name="inherit_id" ref="base.view_partner_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='vat']" position="after">
+                  <field name="is_approved_vendor"/>
+              </xpath>
+          </field>
+    </record>
+        <record id="add_checkbox_in_product" model="ir.ui.view">
+          <field name="name">add critical item</field>
+          <field name="model">product.template</field>
+          <field name="inherit_id" ref="product.product_template_only_form_view"/>
+          <field name="arch" type="xml">
+              <xpath expr="//div[@name='options']" position="after">
+                  <field name="critical_item"/>
+                  <label for="critical_item"/>
+              </xpath>
+          </field>
+    </record>
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="critical_item_checkbox.action_window">
+      <field name="name">critical_item_checkbox window</field>
+      <field name="res_model">critical_item_checkbox.critical_item_checkbox</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="critical_item_checkbox.action_server">
+      <field name="name">critical_item_checkbox server</field>
+      <field name="model_id" ref="model_critical_item_checkbox_critical_item_checkbox"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="critical_item_checkbox" id="critical_item_checkbox.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="critical_item_checkbox.menu_1" parent="critical_item_checkbox.menu_root"/>
+    <menuitem name="Menu 2" id="critical_item_checkbox.menu_2" parent="critical_item_checkbox.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="critical_item_checkbox.menu_1_list" parent="critical_item_checkbox.menu_1"
+              action="critical_item_checkbox.action_window"/>
+    <menuitem name="Server to list" id="critical_item_checkbox" parent="critical_item_checkbox.menu_2"
+              action="critical_item_checkbox.action_server"/>
+-->
+  </data>
+</odoo>
