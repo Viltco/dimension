@@ -48,7 +48,7 @@ class AttachmentFields(models.Model):
 
     def button_plan(self):
         """ Create work orders. And probably do stuff, like things. """
-        orders_to_plan = self.filtered(lambda order: order.routing_id and order.state in ['confirm'])
+        orders_to_plan = self.filtered(lambda order: order.routing_id and order.state in ['confirmed','confirm'])
         for order in orders_to_plan:
             order.move_raw_ids.filtered(lambda m: m.state == 'draft')._action_confirm()
             quantity = order.product_uom_id._compute_quantity(order.product_qty, order.bom_id.product_uom_id) / order.bom_id.product_qty
