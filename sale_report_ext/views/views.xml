@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+
+        <record id="view_sale_order_form_inh" model="ir.ui.view">
+            <field name="name">sale.order.inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='sale_header']" position="after">
+                    <group col="4">
+                        <field name="request_number"/>
+                        <field name="rig_code"/>
+                        <field name="cost_center"/>
+                        <field name="requester"/>
+                        <field name="well_charge"/>
+                        <field name="well_number"/>
+                        <field name="ref_drss"/>
+                        <field name="priority"/>
+                        <field name="vendor"/>
+                        <field name="vendor_name"/>
+                        <field name="client_order_ref" string="Comments"/>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook/page[@name='other_information']//field[@name='client_order_ref']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
